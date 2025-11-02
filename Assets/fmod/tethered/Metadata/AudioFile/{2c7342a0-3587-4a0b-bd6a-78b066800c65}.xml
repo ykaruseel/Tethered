@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2c7342a0-3587-4a0b-bd6a-78b066800c65}">
+		<property name="assetPath">
+			<value>dark_jump 5-pawnjump1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.26572916666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b8d1c93a-e284-406e-9e76-3afab380e18d}</destination>
+		</relationship>
+	</object>
+</objects>

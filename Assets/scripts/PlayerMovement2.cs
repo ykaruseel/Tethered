@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using FMODUnity;
 
 public class PlayerMovement2 : MonoBehaviour
 {
@@ -7,7 +8,6 @@ public class PlayerMovement2 : MonoBehaviour
     public float jumpForce = 10f;
 
     private Rigidbody2D rb;
-    private float moveInput;
     private bool isGrounded;
     private bool isMovementBlocked;
 
@@ -16,10 +16,12 @@ public class PlayerMovement2 : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
+    [Header("FMOD Звук прыжка")]
+    [SerializeField] private EventReference jumpEvent;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.freezeRotation = true; // не падает на бок
     }
 
     void Update()
@@ -27,31 +29,24 @@ public class PlayerMovement2 : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, groundLayer);
 
         if (isMovementBlocked)
-        {
-            moveInput = 0f;
             return;
-        }
 
-        // Управление стрелками
+        float moveInput = 0f;
+
+        // Стрелки ← →
         if (Input.GetKey(KeyCode.LeftArrow))
             moveInput = -1f;
         else if (Input.GetKey(KeyCode.RightArrow))
             moveInput = 1f;
-        else
-            moveInput = 0f;
 
-        // Прыжок стрелкой вверх
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            RuntimeManager.PlayOneShot(jumpEvent, transform.position);
+        }
+
+        transform.position += new Vector3(moveInput * moveSpeed * Time.deltaTime, 0f, 0f);
     }
 
-    void FixedUpdate()
-    {
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
-    }
-
-    public void SetMovementBlocked(bool blocked)
-    {
-        isMovementBlocked = blocked;
-    }
+    public void SetMovementBlocked(bool blocked) => isMovementBlocked = blocked;
 }

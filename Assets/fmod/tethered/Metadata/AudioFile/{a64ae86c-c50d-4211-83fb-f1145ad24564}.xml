@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a64ae86c-c50d-4211-83fb-f1145ad24564}">
+		<property name="assetPath">
+			<value>dark_jump4.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.75</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b8d1c93a-e284-406e-9e76-3afab380e18d}</destination>
+		</relationship>
+	</object>
+</objects>
