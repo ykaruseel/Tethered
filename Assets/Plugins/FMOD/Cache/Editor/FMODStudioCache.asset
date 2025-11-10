@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: Assets/fmod/tethered/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638976956590779193
+  lastModified: 638983739360277949
   FileSizes:
   - Name: Desktop
-    Value: 1108448
+    Value: 1163008
   Exists: 1
 --- !u!114 &-291800239962650079
 MonoBehaviour:
@@ -93,13 +93,42 @@ MonoBehaviour:
   - {fileID: -291800239962650079}
   - {fileID: 3516515501357817627}
   - {fileID: -6248831814492321921}
+  - {fileID: 1754054739239213444}
+  - {fileID: 5796444129556011108}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2148011942803183347}
   StringsBanks:
   - {fileID: 7718203185793284109}
-  cacheTime: 638976956590794287
+  cacheTime: 638983739360310865
   cacheVersion: 131633
+--- !u!114 &1754054739239213444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/light_walk
+  m_EditorClassIdentifier: 
+  Path: event:/light_walk
+  Guid:
+    Data1: -1255190754
+    Data2: 1267780965
+    Data3: 1616979345
+    Data4: -1369046589
+  Banks:
+  - {fileID: -2148011942803183347}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 297
 --- !u!114 &3516515501357817627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +156,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 270
+--- !u!114 &5796444129556011108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/dark_walk
+  m_EditorClassIdentifier: 
+  Path: event:/dark_walk
+  Guid:
+    Data1: 948113280
+    Data2: 1280906485
+    Data3: -1799190856
+    Data4: 390597932
+  Banks:
+  - {fileID: -2148011942803183347}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 240
 --- !u!114 &7718203185793284109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,8 +198,8 @@ MonoBehaviour:
   Path: Assets/fmod/tethered/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638976956590794287
+  lastModified: 638983739360310865
   FileSizes:
   - Name: Desktop
-    Value: 850
+    Value: 944
   Exists: 1

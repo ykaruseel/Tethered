@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{115f9400-d1fb-4945-bc83-44da06df6c07}">
+		<property name="assetPath">
+			<value>dark_walk 5-concrete-footsteps.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.2376875</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b8d1c93a-e284-406e-9e76-3afab380e18d}</destination>
+		</relationship>
+	</object>
+</objects>
