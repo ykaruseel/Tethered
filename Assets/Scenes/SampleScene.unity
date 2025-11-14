@@ -2644,7 +2644,7 @@ Transform:
   m_GameObject: {fileID: 979555504}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.65, y: -3.11, z: 0}
+  m_LocalPosition: {x: -49.5, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1.7622, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2678,6 +2678,15 @@ MonoBehaviour:
       Data3: 1365754008
       Data4: 1678307976
     Path: event:/light_jump
+  footstepEvent:
+    Guid:
+      Data1: -1255190754
+      Data2: 1267780965
+      Data3: 1616979345
+      Data4: -1369046589
+    Path: event:/light_walk
+  stepsPerSecond: 3
+  minSpeed: 0.15
 --- !u!1 &1009211537
 GameObject:
   m_ObjectHideFlags: 0
@@ -4510,7 +4519,7 @@ Transform:
   m_GameObject: {fileID: 1461115186}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.920006, y: -3.1100001, z: 0}
+  m_LocalPosition: {x: -45.229996, y: -0.8000002, z: 0}
   m_LocalScale: {x: 1, y: 1.7622, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4543,6 +4552,15 @@ MonoBehaviour:
       Data3: 1634381446
       Data4: 36978499
     Path: event:/dark_jump
+  footstepEvent:
+    Guid:
+      Data1: 948113280
+      Data2: 1280906485
+      Data3: -1799190856
+      Data4: 390597932
+    Path: event:/dark_walk
+  stepsPerSecond: 3
+  minSpeed: 0.15
 --- !u!114 &1461115192
 MonoBehaviour:
   m_ObjectHideFlags: 0

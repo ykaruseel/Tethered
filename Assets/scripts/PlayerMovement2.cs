@@ -1,52 +1,101 @@
 ﻿using UnityEngine;
 using FMODUnity;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement2 : MonoBehaviour
 {
-    [Header("Настройки движения")]
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    [Header("Движение")]
+    [Min(0f)] public float moveSpeed = 5f;
+    [Min(0f)] public float jumpForce = 10f;
+
+    [Header("Проверка земли")]
+    public Transform groundCheckPoint;
+    [Min(0f)] public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
+
+    [Header("FMOD")]
+    [SerializeField] private EventReference jumpEvent;
+    [SerializeField] private EventReference footstepEvent;
+
+    [Header("Шаги")]
+    [Min(0.1f)] public float stepsPerSecond = 2.2f;
+    [Min(0f)] public float minSpeed = 0.15f;
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isMovementBlocked;
+    private float moveInput;
+    private bool jumpRequested;
 
-    [Header("Проверка земли")]
-    public Transform groundCheckPoint;
-    public float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer;
+    private float stepTimer;
+    private float StepInterval => 1f / stepsPerSecond;
 
-    [Header("FMOD Звук прыжка")]
-    [SerializeField] private EventReference jumpEvent;
-
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (groundCheckPoint == null)
+            Debug.LogWarning($"{nameof(PlayerMovement2)} on {name}: groundCheckPoint is not set.");
+        stepTimer = StepInterval;
     }
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, groundLayer);
-
+        // --- инпут ---
         if (isMovementBlocked)
-            return;
-
-        float moveInput = 0f;
-
-        // Стрелки ← →
-        if (Input.GetKey(KeyCode.LeftArrow))
-            moveInput = -1f;
-        else if (Input.GetKey(KeyCode.RightArrow))
-            moveInput = 1f;
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            RuntimeManager.PlayOneShot(jumpEvent, transform.position);
+            moveInput = 0f;
+            jumpRequested = false;
+        }
+        else
+        {
+            // стрелки
+            if (Input.GetKey(KeyCode.LeftArrow)) moveInput = -1f;
+            else if (Input.GetKey(KeyCode.RightArrow)) moveInput = 1f;
+            else moveInput = 0f;
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+                jumpRequested = true;
         }
 
-        transform.position += new Vector3(moveInput * moveSpeed * Time.deltaTime, 0f, 0f);
+        // --- таймер шагов ---
+        stepTimer -= Time.deltaTime;
+        if (isGrounded && Mathf.Abs(rb.linearVelocity.x) >= minSpeed && stepTimer <= 0f && !footstepEvent.IsNull)
+        {
+            RuntimeManager.PlayOneShot(footstepEvent, transform.position);
+            stepTimer = StepInterval;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        // --- граундчек и физика ---
+        if (groundCheckPoint != null)
+            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, groundLayer);
+
+        var vel = rb.linearVelocity;
+        vel.x = moveInput * moveSpeed;
+        rb.linearVelocity = vel;
+
+        if (jumpRequested && isGrounded)
+        {
+            vel = rb.linearVelocity;
+            vel.y = jumpForce;
+            rb.linearVelocity = vel;
+            if (!jumpEvent.IsNull)
+                RuntimeManager.PlayOneShot(jumpEvent, transform.position);
+        }
+
+        jumpRequested = false;
     }
 
     public void SetMovementBlocked(bool blocked) => isMovementBlocked = blocked;
+
+#if UNITY_EDITOR
+    void OnDrawGizmosSelected()
+    {
+        if (groundCheckPoint == null) return;
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckRadius);
+    }
+#endif
 }
