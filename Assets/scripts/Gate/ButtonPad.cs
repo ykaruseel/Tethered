@@ -10,53 +10,62 @@ public sealed class ButtonPad : MonoBehaviour
     [Header("Требуемый цвет")]
     public PlayerColor requiredColor = PlayerColor.White;
 
-    [Header("Визуал (опционально)")]
+    [Header("Анимация кнопки")]
+    [Tooltip("Что опускать при нажатии. Если не задано — двигается сам объект кнопки.")]
     public Transform topVisual;
-    public float pressedOffsetY = -0.06f;
+    [Tooltip("Насколько опускать (в локальных единицах). Отрицательное — вниз.")]
+    public float pressedOffsetY = -0.08f;
+    [Tooltip("Скорость сглаживания движения.")]
     public float pressLerpSpeed = 12f;
 
     public event Action<ButtonPad, bool> OnPressChanged;
     public bool Pressed { get; private set; }
 
-    // why: считаем по игрокам, а не по коллайдерам
     private readonly HashSet<GameObject> _pressingPlayers = new();
-
-    private Vector3 _topStartPos;
+    private Transform _top;           // что двигаем
+    private Vector3 _topStartLocalPos;
     private Collider2D _col;
 
     void Awake()
     {
         _col = GetComponent<Collider2D>();
-        _col.isTrigger = true;
-        if (topVisual != null) _topStartPos = topVisual.localPosition;
+        _col.isTrigger = true; // why: игрок встаёт на триггер-плиту
+
+        _top = topVisual != null ? topVisual : transform;
+        _topStartLocalPos = _top.localPosition;
+    }
+
+    void OnValidate()
+    {
+        if (_col == null) _col = GetComponent<Collider2D>();
+        if (_col != null) _col.isTrigger = true;
     }
 
     void Update()
     {
-        if (topVisual == null) return;
-        var target = _topStartPos + Vector3.up * (Pressed ? pressedOffsetY : 0f);
-        topVisual.localPosition = Vector3.Lerp(topVisual.localPosition, target, Time.deltaTime * pressLerpSpeed);
+        if (_top == null) return;
+        var target = _topStartLocalPos + Vector3.up * (Pressed ? pressedOffsetY : 0f);
+        _top.localPosition = Vector3.Lerp(_top.localPosition, target, Time.deltaTime * pressLerpSpeed);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        var playerGO = GetValidPlayerRoot(other);
-        if (playerGO == null) return;
-        if (_pressingPlayers.Add(playerGO))
+        var root = GetValidPlayerRoot(other);
+        if (root == null) return;
+        if (_pressingPlayers.Add(root))
             SetPressed(_pressingPlayers.Count > 0);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        var playerGO = GetValidPlayerRoot(other);
-        if (playerGO == null) return;
-        if (_pressingPlayers.Remove(playerGO))
+        var root = GetValidPlayerRoot(other);
+        if (root == null) return;
+        if (_pressingPlayers.Remove(root))
             SetPressed(_pressingPlayers.Count > 0);
     }
 
     private GameObject GetValidPlayerRoot(Collider2D col)
     {
-        // why: поддержка коллайдеров на дочерних объектах персонажа
         var id = col.GetComponentInParent<PlayerIdentity>();
         if (id == null || id.color != requiredColor) return null;
         return id.gameObject;
