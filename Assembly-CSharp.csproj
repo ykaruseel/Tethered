@@ -46,62 +46,127 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.59f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\scripts\Checkpoint.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\NamePickNewGui.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
+    <Compile Include="Assets\scripts\Gate\ButtonPad.cs" />
     <Compile Include="Assets\scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\Utilities\TextToggleIsOnTransition.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+    <Compile Include="Assets\scripts\UpDownPlatform2D.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\ChannelSelector.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\Utilities\IgnoreUiRaycastWhenInactive.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\Utilities\EnableOnStart.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\ChatSettings.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets\scripts\Gate\UniversalPad.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\scripts\PlayerMovement2.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\Utilities\ChatIdCheckerUI.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\scripts\ObstacleTriggerController.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\Utilities\DestroyOnStart.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\scripts\DeathZone.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
+    <Compile Include="Assets\scripts\Launcher.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\FriendItem.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+    <Compile Include="Assets\scripts\Gate\GateGroup.cs" />
     <Compile Include="Assets\scripts\ChainController.cs" />
     <Compile Include="Assets\scripts\Ambient.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\scripts\GameManager.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\scripts\MobileControl.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\ChatNewGui.cs" />
+    <Compile Include="Assets\scripts\PlayerIdentity.cs" />
+    <Compile Include="Assets\scripts\Gate\GateGroupMulti.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Code\Utilities\TextButtonTransition.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+    <Compile Include="Assets\scripts\CongratsTrigger.cs" />
+    <Compile Include="Assets\scripts\Gate\GateController.cs" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Roboto-Bold - License.txt" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{a5757860-2a1b-48ad-90e1-272db46f0772}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{89e398cf-d0da-4fc6-8c73-29bd3a111068}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\fmod\tethered\Metadata\Event\{b52f4f1e-cd65-4b90-9125-6160c30166ae}.xml" />
     <None Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Resources\OpenSans\Apache License.txt" />
     <None Include="Assets\fmod\tethered\Metadata\Event\{38830f80-14f5-4c59-b886-c2942c0d4817}.xml" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{477f13bd-8fd3-4f47-97ef-d8268393bf3e}.xml" />
+    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Unity - OFL.txt" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{ea658b3a-9d29-48fe-8293-ccd811748a5d}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\fmod\tethered\Metadata\SnapshotGroup\{eed2e2b0-0201-4b6c-8673-f344b5e4ed26}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Tags.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{17a68f5e-4326-408b-a1f7-2800fd85d13c}.xml" />
+    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Roboto-Bold - AFL.txt" />
     <None Include="Assets\fmod\tethered\Metadata\EncodingSetting\{30af4fc5-75c3-4385-b26f-4124a8506f76}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{932d7f5b-f2c9-472b-bfe6-141bac204a74}.xml" />
+    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{d5203bb8-489b-4abe-9f81-01d06e7e7c7e}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Platform\{71dea11e-8a27-4bb9-bc44-aa72483c45a7}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{a2e5d581-222d-4ee8-aed0-dd94c65362c9}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{cf0ea404-2fb8-4a78-bd8a-d1a9e61d446e}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{1d4d9709-7bda-4f93-9072-cf63feea47dd}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{96d81704-859b-43d1-9877-c93c9c83ed21}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\EffectPresetFolder\{fb37e592-375b-49b0-93d5-b1581ff5eb51}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Master.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{47b6ce93-5e0e-4ee7-be01-333c36086485}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{36f3dc99-7331-4633-a102-726cd8fb60b7}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{b36501df-d931-4fb1-83c7-bc5fef13be16}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{7d95c233-2b20-4a4f-9d51-49fe0818398e}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
     <None Include="Assets\fmod\tethered\Metadata\Workspace.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{2c7342a0-3587-4a0b-bd6a-78b066800c65}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{a64ae86c-c50d-4211-83fb-f1145ad24564}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Return\{50817c84-7d81-4a95-87a5-5e126c18b7ac}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{53220c34-16f0-472a-a53c-236b7b44d96d}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{f4752af7-8f66-4cd9-9660-39562ab1d742}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Asset\{b8d1c93a-e284-406e-9e76-3afab380e18d}.xml" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\fmod\tethered\Metadata\SandboxFolder\{c7cb4543-8c00-4d34-9613-f376213fa6f5}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\Photon\PhotonLibs\changes-library.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{f16951e9-b608-4424-b15a-c4412970a7a8}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\EventFolder\{472c25d2-916b-4190-9057-72aa498a75c1}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\fmod\tethered\Metadata\BankFolder\{d9895733-1a53-4273-b898-a7c515d13e7f}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Event\{30890788-790a-446b-98c0-675188f20864}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Event\{b28c2017-9180-43e8-86ae-6a61433f3402}.xml" />
@@ -109,12 +174,15 @@
     <None Include="Assets\fmod\tethered\Metadata\Event\{5e7c8d3e-25a8-4d50-b18f-442d5a47b1ac}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{9528a4aa-2d6f-4a82-b5f3-cd9df30b81cf}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{c8856cb2-f1ba-41d4-bb04-00a4e5890aa3}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{bc836641-e431-4d38-8158-ce08eff4a91b}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\ParameterPresetFolder\{4b62d5cc-3a10-4021-9f3f-3267d2542560}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{95b2b405-f505-4e17-844d-3b698b4305b5}.xml" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{86e26952-b187-41ef-8275-376da7ae729b}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{8668bd1f-27c3-4092-8a32-ccaaef15fda6}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{10968764-27b6-42a3-82a0-632f6ac2a259}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Mixer.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{59d5ddfd-5e7b-45f5-92fb-3f0ed8c4f936}.xml" />
@@ -122,11 +190,18 @@
     <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{115f9400-d1fb-4945-bc83-44da06df6c07}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Bank\{f0ab5293-a141-42bc-8da0-52698c3e94df}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\fmod\tethered\Metadata\ProfilerFolder\{c8a6b7eb-b66c-4047-9d0a-d37875e149c1}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{054fed2c-da39-4983-aca8-d77cbe468a5c}.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{e215377a-c208-49e1-9337-62c8ac57d725}.xml" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne.json" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{2186b927-e2d8-4283-88b4-1183697dc58c}.xml" />
+    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.59f2\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -487,17 +562,17 @@
     <Reference Include="nunit.framework">
       <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\PackageCache\com.unity.visualscripting@6279e2b7c485\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll</HintPath>
     </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll</HintPath>
+    <Reference Include="Mono.Cecil">
+      <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.59f2\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -991,9 +1066,6 @@
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
       <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
       <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
@@ -1002,6 +1074,9 @@
     </Reference>
     <Reference Include="Unity.Multiplayer.Center.Common">
       <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\ScriptAssemblies\Unity.Multiplayer.Center.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>C:\Users\48538\Documents\GitHub\Tethered\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
@@ -1115,6 +1190,10 @@
       <Project>{45e2fc30-c64e-d0ef-6995-9edf2a981ec4}</Project>
       <Name>FMODUnity</Name>
     </ProjectReference>
+    <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
+      <Project>{5dfc2086-6f61-8768-b299-8acfb127c17d}</Project>
+      <Name>PunDemos.DemoSlotcarEditor</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonChat.csproj">
       <Project>{286e78a4-34d7-a064-b067-9c265f5cdf8a}</Project>
       <Name>PhotonChat</Name>
@@ -1122,10 +1201,6 @@
     <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
       <Project>{dab84ac7-889a-db43-317d-4555cee04fa8}</Project>
       <Name>PunDemos.DemoHubEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{5dfc2086-6f61-8768-b299-8acfb127c17d}</Project>
-      <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

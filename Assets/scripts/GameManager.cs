@@ -1,48 +1,61 @@
 using UnityEngine;
+using Photon.Pun; // Обязательно добавляем библиотеку
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; // Singleton
+    public static GameManager Instance;
 
-    [Header("������ �� �������")]
-    public Transform player1;
-    public Transform player2;
-
-    [Header("��������� ����� ������")]
-    public Transform startPoint;
+    [Header("Точка старта")]
+    public Transform startPoint; // Перетащи сюда объект StartPoint со сцены
 
     private Vector2 currentCheckpoint;
 
     void Awake()
     {
-        // Singleton, ����� ���������� �� ������ ��������
+        // Синглтон (оставляем как было)
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        currentCheckpoint = startPoint.position;
+        // Запоминаем старт
+        if (startPoint != null)
+            currentCheckpoint = startPoint.position;
     }
 
-    // ��������� ������� ��������
+    void Start()
+    {
+        // --- ГЛАВНОЕ ИЗМЕНЕНИЕ: СПАВН ИГРОКОВ ---
+        
+        // Photon сам проверяет: ты создал комнату или вошел в нее?
+        
+        if (PhotonNetwork.IsMasterClient)
+        {
+            // Если ты Хост (Игрок 1) -> Создаем Белого игрока
+            // "PlayerWhite" - это имя префаба в папке Resources
+            PhotonNetwork.Instantiate("PlayerWhite", currentCheckpoint, Quaternion.identity);
+        }
+        else
+        {
+            // Если ты Гость (Игрок 2) -> Создаем Черного игрока
+            // Спавним чуть правее (+1.5f), чтобы не застряли друг в друге
+            Vector2 spawnPos = currentCheckpoint + new Vector2(1.5f, 0f);
+            PhotonNetwork.Instantiate("PlayerBlack", spawnPos, Quaternion.identity);
+        }
+    }
+
+    // Твоя функция для сохранения чекпоинта (оставляем)
     public void SetCheckpoint(Vector2 newPoint)
     {
         currentCheckpoint = newPoint;
     }
 
-    // ������� ����� �������
-    public void RespawnPlayers()
+    // Простая функция респавна (для своей смерти)
+    public void RespawnMyPlayer(GameObject playerObject)
     {
-        if (player1 != null)
+        playerObject.transform.position = currentCheckpoint;
+        // Сброс скорости
+        if (playerObject.TryGetComponent<Rigidbody2D>(out var rb))
         {
-            var rb1 = player1.GetComponent<Rigidbody2D>();
-            rb1.linearVelocity = Vector2.zero;
-            player1.position = currentCheckpoint;
-        }
-
-        if (player2 != null)
-        {
-            var rb2 = player2.GetComponent<Rigidbody2D>();
-            rb2.linearVelocity = Vector2.zero;
-            player2.position = currentCheckpoint + new Vector2(1.5f, 0f); // ���� ������, ����� �� ������ � ����� �����
+            rb.linearVelocity = Vector2.zero;
         }
     }
 }

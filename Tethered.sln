@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonUnityNetworking.Edito
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonUnityNetworking", "PhotonUnityNetworking.csproj", "{fe827f74-af3b-c1c5-9cfd-ab9564ee0722}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonUnityNetworking.Demos", "PhotonUnityNetworking.Demos.csproj", "{d95f4f61-2f82-cfd9-7572-333e50317ea8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{3bb16fc6-a523-8c29-2421-324d1b4d84bf}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonUnityNetworking.Demos", "PhotonUnityNetworking.Demos.csproj", "{d95f4f61-2f82-cfd9-7572-333e50317ea8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMODUnityResonanceEditor", "FMODUnityResonanceEditor.csproj", "{2718e6ac-ea16-5ca5-c8d1-2160c420d704}"
 EndProject
@@ -44,10 +44,10 @@ Global
 		{9f68a300-f089-f85e-e023-9bc3d72f4897}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{fe827f74-af3b-c1c5-9cfd-ab9564ee0722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{fe827f74-af3b-c1c5-9cfd-ab9564ee0722}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{d95f4f61-2f82-cfd9-7572-333e50317ea8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{d95f4f61-2f82-cfd9-7572-333e50317ea8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3bb16fc6-a523-8c29-2421-324d1b4d84bf}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3bb16fc6-a523-8c29-2421-324d1b4d84bf}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{d95f4f61-2f82-cfd9-7572-333e50317ea8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{d95f4f61-2f82-cfd9-7572-333e50317ea8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2718e6ac-ea16-5ca5-c8d1-2160c420d704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2718e6ac-ea16-5ca5-c8d1-2160c420d704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{959d8030-4bd7-363d-152f-2c530c689e64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
