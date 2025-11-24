@@ -187,6 +187,7 @@
     <None Include="Assets\fmod\tethered\Metadata\Mixer.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{59d5ddfd-5e7b-45f5-92fb-3f0ed8c4f936}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{d5f430c1-3f81-4d2b-a521-ba45470d27aa}.xml" />
+    <None Include="Assets\fmod\tethered\Metadata\EncodingSetting\{c4ce03a2-ec6f-4944-89b6-d587e3c88de8}.xml" />
     <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{115f9400-d1fb-4945-bc83-44da06df6c07}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Bank\{f0ab5293-a141-42bc-8da0-52698c3e94df}.xml" />
@@ -195,6 +196,7 @@
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{054fed2c-da39-4983-aca8-d77cbe468a5c}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{e215377a-c208-49e1-9337-62c8ac57d725}.xml" />
+    <None Include="Assets\fmod\tethered\Metadata\Platform\{728081e3-f59b-464e-b627-a71100b62c32}.xml" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
