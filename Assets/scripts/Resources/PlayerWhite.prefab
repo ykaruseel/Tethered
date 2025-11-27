@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 6592939351636892573}
   - component: {fileID: 8687732378615945170}
   - component: {fileID: 3952034341357390142}
+  - component: {fileID: 2321549788099360857}
   m_Layer: 6
   m_Name: PlayerWhite
   m_TagString: Player1
@@ -300,6 +301,20 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &2321549788099360857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020333562255997901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &3979925320889233410
 GameObject:
   m_ObjectHideFlags: 0
