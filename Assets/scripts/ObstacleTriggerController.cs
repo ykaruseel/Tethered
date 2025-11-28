@@ -1,153 +1,199 @@
-// Assets/Scripts/CoopGates/ObstacleTriggerController.cs
 using System.Collections;
 using UnityEngine;
 
-[DisallowMultipleComponent]
-public sealed class ObstacleTriggerController : MonoBehaviour
+public enum AnchorSide
 {
-    public enum AnchorSide { Left, Right }
+    Left,
+    Right,
+    Top,
+    Bottom
+}
 
-    [Header("Кнопка")]
+public class ObstacleTriggerController : MonoBehaviour
+{
+    [Header("Pad Trigger")]
     public UniversalPad pad;
+    public bool fireOnPress = true;     // true = срабатывает при нажатии, false = при отпускании
+    public bool onceOnly = true;        // срабатывает один раз
 
-    [Header("Ворота")]
+    [Header("Gates To Open")]
     public GateController[] gates;
 
-    [Header("Потолочная стенка")]
+    [Header("Ceiling Shrink")]
     public Transform ceiling;
-    [Min(0.01f)] public float ceilingTargetScaleX = 0.4f;
-    [Min(0.01f)] public float ceilingShrinkDuration = 0.4f;
-    public AnchorSide ceilingAnchorSide = AnchorSide.Left; // какой край фиксировать
+    public float ceilingTargetScaleX = 0.3f;
+    public float ceilingShrinkDuration = 0.5f;
+    public AnchorSide ceilingAnchorSide = AnchorSide.Left;
 
-    [Header("Вторая платформа (управляемая)")]
-    public UpDownPlatform2D secondPlatform;   // autoStart = false
+    [Header("Second Platform (autoStart must be OFF)")]
+    public UpDownPlatform2D secondPlatform;
 
-    [Header("Опции")]
-    public bool fireOnPress = true;
-    public bool ensureSecondPlatformStoppedOnEnable = true;
+    [Header("Objects to Disable on Trigger")]
+    public GameObject[] objectsToDisable;
 
-    private bool _fired;
+    private bool triggered;
 
-    void OnEnable()
+    private void OnEnable()
     {
-        if (pad != null) pad.OnPressChanged += OnPadChanged;
-        if (ensureSecondPlatformStoppedOnEnable && secondPlatform != null)
-            secondPlatform.StopMoving();
+        if (pad != null)
+            pad.OnPressChanged += OnPadPressChanged;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
-        if (pad != null) pad.OnPressChanged -= OnPadChanged;
+        if (pad != null)
+            pad.OnPressChanged -= OnPadPressChanged;
     }
 
-    void OnPadChanged(UniversalPad _, bool pressed)
+    private void OnPadPressChanged(UniversalPad _, bool pressed)
     {
-        if (_fired) return;
-        if ((fireOnPress && pressed) || (!fireOnPress && !pressed))
-            TriggerSequence();
-    }
+        if (triggered && onceOnly)
+            return;
 
-    void TriggerSequence()
-    {
-        _fired = true;
+        bool shouldFire = fireOnPress ? pressed : !pressed;
+        if (!shouldFire)
+            return;
 
-        // 1) Ворота
+        triggered = true;
+
+        // 1. Открываем ворота навсегда
         if (gates != null)
-            for (int i = 0; i < gates.Length; i++)
-                if (gates[i] != null) gates[i].OpenPermanently();
+        {
+            foreach (var g in gates)
+            {
+                if (g != null)
+                    g.OpenPermanently();
+            }
+        }
 
-        // 2) Потолок: сжать по X с якорем
+        // 2. Сжимаем потолок
         if (ceiling != null)
-            StartCoroutine(AnimateCeilingScaleXAnchored(ceiling, ceilingTargetScaleX, ceilingShrinkDuration, ceilingAnchorSide));
+        {
+            StartCoroutine(AnimateCeilingScaleXAnchored(
+                ceiling,
+                ceilingTargetScaleX,
+                ceilingShrinkDuration,
+                ceilingAnchorSide
+            ));
+        }
 
-        // 3) Платформа
+        // 3. Запускаем вторую платформу
         if (secondPlatform != null)
             secondPlatform.StartMoving();
+
+        // 4. Выключаем указанные объекты
+        if (objectsToDisable != null)
+        {
+            foreach (var obj in objectsToDisable)
+            {
+                if (obj != null)
+                    obj.SetActive(false);
+            }
+        }
     }
 
-    static IEnumerator AnimateCeilingScaleXAnchored(Transform t, float targetScaleX, float duration, AnchorSide anchor)
+    private IEnumerator AnimateCeilingScaleXAnchored(
+        Transform target,
+        float targetScaleX,
+        float duration,
+        AnchorSide anchorSide)
     {
-        // why: работаем в мировых координатах, чтобы якорь оставался на месте
-        var rend = t.GetComponentInChildren<Renderer>();
+        var rend = target.GetComponentInChildren<Renderer>();
+
+        Vector3 startScale = target.localScale;
+        float startX = startScale.x;
+        float endX = targetScaleX;
+
+        float t = 0f;
+
         if (rend == null)
         {
-            // fallback: просто меняем scale без компенсации
-            yield return AnimateScaleXOnly(t, targetScaleX, duration);
+            // fallback — без якоря
+            while (t < duration)
+            {
+                t += Time.deltaTime;
+                float k = Mathf.Clamp01(t / duration);
+                target.localScale = new Vector3(Mathf.Lerp(startX, endX, k), startScale.y, startScale.z);
+                yield return null;
+            }
+
+            target.localScale = new Vector3(endX, startScale.y, startScale.z);
             yield break;
         }
 
-        var startScale = t.localScale;
-        float startScaleX = startScale.x;
-        float endScaleX = targetScaleX;
-
-        var startBounds = rend.bounds;
-        float startWidth = startBounds.size.x;
-        float anchorX = (anchor == AnchorSide.Left) ? startBounds.min.x : startBounds.max.x;
-
-        float time = 0f;
-        if (duration <= 0f)
+        // Исходный bounds
+        Bounds b0 = rend.bounds;
+        float anchorPos = anchorSide switch
         {
-            // мгновенно
-            t.localScale = new Vector3(endScaleX, startScale.y, startScale.z);
-            // компенсация позиции
-            yield return null;
-            rend = t.GetComponentInChildren<Renderer>(); // обновить bounds
-            var curBounds = rend.bounds;
-            float newWidth = curBounds.size.x; // после скейла
-            float newCenterX = (anchor == AnchorSide.Left)
-                ? anchorX + newWidth * 0.5f
-                : anchorX - newWidth * 0.5f;
-            var p = t.position; p.x = newCenterX; t.position = p;
-            yield break;
-        }
+            AnchorSide.Left => b0.min.x,
+            AnchorSide.Right => b0.max.x,
+            AnchorSide.Bottom => b0.min.y,
+            AnchorSide.Top => b0.max.y,
+            _ => b0.min.x
+        };
 
-        while (time < duration)
+        while (t < duration)
         {
-            time += Time.deltaTime;
-            float k = Mathf.Clamp01(time / duration);
-            float sx = Mathf.Lerp(startScaleX, endScaleX, k);
+            t += Time.deltaTime;
+            float k = Mathf.Clamp01(t / duration);
 
-            // применяем скейл
-            t.localScale = new Vector3(sx, startScale.y, startScale.z);
+            float newX = Mathf.Lerp(startX, endX, k);
+            target.localScale = new Vector3(newX, startScale.y, startScale.z);
 
-            // после скейла обновляем bounds и компенсируем позицию по X
-            var curBounds = rend.bounds;
-            float newWidth = curBounds.size.x;
-            float newCenterX = (anchor == AnchorSide.Left)
-                ? anchorX + newWidth * 0.5f
-                : anchorX - newWidth * 0.5f;
+            // Пересчитать позицию так, чтобы якорная сторона оставалась на месте
+            Bounds b = rend.bounds;
+            Vector3 pos = target.position;
 
-            var pos = t.position; pos.x = newCenterX; t.position = pos;
+            switch (anchorSide)
+            {
+                case AnchorSide.Left:
+                    pos.x = anchorPos + b.extents.x;
+                    break;
 
-            yield return null;
-        }
+                case AnchorSide.Right:
+                    pos.x = anchorPos - b.extents.x;
+                    break;
 
-        // финальная коррекция
-        var finalBounds = rend.bounds;
-        float finalWidth = finalBounds.size.x;
-        float finalCenterX = (anchor == AnchorSide.Left)
-            ? anchorX + finalWidth * 0.5f
-            : anchorX - finalWidth * 0.5f;
+                case AnchorSide.Bottom:
+                    pos.y = anchorPos + b.extents.y;
+                    break;
 
-        t.localScale = new Vector3(endScaleX, startScale.y, startScale.z);
-        var fp = t.position; fp.x = finalCenterX; t.position = fp;
-    }
+                case AnchorSide.Top:
+                    pos.y = anchorPos - b.extents.y;
+                    break;
+            }
 
-    static IEnumerator AnimateScaleXOnly(Transform t, float targetScaleX, float duration)
-    {
-        var start = t.localScale;
-        var end = new Vector3(targetScaleX, start.y, start.z);
+            target.position = pos;
 
-        if (duration <= 0f) { t.localScale = end; yield break; }
-
-        float time = 0f;
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            float k = Mathf.Clamp01(time / duration);
-            t.localScale = Vector3.Lerp(start, end, k);
             yield return null;
         }
-        t.localScale = end;
+
+        // Финальное значение
+        target.localScale = new Vector3(endX, startScale.y, startScale.z);
+
+        // Последнее выравнивание
+        Bounds bf = rend.bounds;
+        Vector3 posF = target.position;
+
+        switch (anchorSide)
+        {
+            case AnchorSide.Left:
+                posF.x = anchorPos + bf.extents.x;
+                break;
+
+            case AnchorSide.Right:
+                posF.x = anchorPos - bf.extents.x;
+                break;
+
+            case AnchorSide.Bottom:
+                posF.y = anchorPos + bf.extents.y;
+                break;
+
+            case AnchorSide.Top:
+                posF.y = anchorPos - bf.extents.y;
+                break;
+        }
+
+        target.position = posF;
     }
 }
