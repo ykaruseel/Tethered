@@ -1,12 +1,13 @@
+// Assets/Scripts/Player/PlayerMovement.cs
 using UnityEngine;
-using Photon.Pun; // ВАЖНО: Добавили библиотеку Photon
+using Photon.Pun;
 using FMODUnity;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Photon")]
-    public PhotonView view; // Ссылка на сетевой компонент
+    public PhotonView view;
 
     [Header("Движение")]
     [Min(0f)] public float moveSpeed = 5f;
@@ -21,59 +22,101 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private EventReference jumpEvent;
     [SerializeField] private EventReference footstepEvent;
 
+    [Header("Шаги")]
+    [Min(0.1f)] public float stepsPerSecond = 2.2f;
+    [Min(0f)] public float minSpeed = 0.15f;
+
     private Rigidbody2D rb;
     private bool isGrounded;
-    private float mobileInput = 0f; // Переменная для телефона
+    private float mobileInput;   // для кнопок на экране (телефон)
+
+    private float stepTimer;
+    private float StepInterval => 1f / stepsPerSecond;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        view = GetComponent<PhotonView>(); // Автоматически находим компонент
+        view = GetComponent<PhotonView>();
+        stepTimer = StepInterval;
     }
 
     void Update()
     {
-        // 1. СЕТЕВАЯ ЗАЩИТА: Если это чужой игрок — выходим и не управляем им
-        if (view.IsMine == false) return;
+        // управляем только своим игроком
+        if (view != null && !view.IsMine)
+            return;
 
-        // 2. ИНПУТ (Клавиатура + Телефон)
+        // --- движение по X ---
         float moveInput = 0f;
-        
+
+        // клавиатура
         if (Input.GetKey(KeyCode.A)) moveInput = -1f;
         else if (Input.GetKey(KeyCode.D)) moveInput = 1f;
-        
-        // Если клавиатуру не трогают, берем управление с телефона
-        if (moveInput == 0) moveInput = mobileInput;
 
-        // Применяем движение
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        // если клавы нет — используем мобильный инпут
+        if (Mathf.Approximately(moveInput, 0f))
+            moveInput = mobileInput;
 
-        // Прыжок (Клавиатура)
+        Vector2 vel = rb.linearVelocity;
+        vel.x = moveInput * moveSpeed;
+        rb.linearVelocity = vel;
+
+        // --- прыжок с клавы ---
         if (Input.GetKeyDown(KeyCode.W))
-        {
             TryJump();
+
+        // --- шаги ---
+        stepTimer -= Time.deltaTime;
+
+        if (isGrounded &&
+            !footstepEvent.IsNull &&
+            stepTimer <= 0f &&
+            Mathf.Abs(rb.linearVelocity.x) >= minSpeed)
+        {
+            RuntimeManager.PlayOneShot(footstepEvent, transform.position);
+            stepTimer = StepInterval;
         }
     }
 
     void FixedUpdate()
     {
-        if (groundCheckPoint != null)
-            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, groundLayer);
+        if (groundCheckPoint == null) return;
+
+        isGrounded = Physics2D.OverlapCircle(
+            groundCheckPoint.position,
+            groundCheckRadius,
+            groundLayer
+        );
     }
 
-    // --- ПУБЛИЧНЫЕ ФУНКЦИИ ДЛЯ КНОПОК UI ---
-    
-    public void OnLeftDown() => mobileInput = -1f;   // Палец нажал "Влево"
-    public void OnRightDown() => mobileInput = 1f;   // Палец нажал "Вправо"
-    public void OnButtonUp() => mobileInput = 0f;    // Палец убрали
-    public void OnJumpDown() => TryJump();           // Палец нажал "Прыжок"
+    // === Мобильные кнопки ===
+    public void OnLeftDown() => mobileInput = -1f;
+    public void OnRightDown() => mobileInput = 1f;
+    public void OnButtonUp() => mobileInput = 0f;
+    public void OnJumpDown() => TryJump();
 
     private void TryJump()
     {
-        if (isGrounded)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            if (!jumpEvent.IsNull) RuntimeManager.PlayOneShot(jumpEvent, transform.position);
-        }
+        if (!isGrounded) return;
+
+        Vector2 vel = rb.linearVelocity;
+        vel.y = jumpForce;
+        rb.linearVelocity = vel;
+
+        if (!jumpEvent.IsNull)
+            RuntimeManager.PlayOneShot(jumpEvent, transform.position);
+
+        // чтобы шаг не прозвучал сразу после прыжка
+        stepTimer = StepInterval;
     }
+
+#if UNITY_EDITOR
+    void OnDrawGizmosSelected()
+    {
+        if (groundCheckPoint == null) return;
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckRadius);
+    }
+#endif
 }
+

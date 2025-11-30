@@ -1,7 +1,7 @@
-// Assets/Scripts/CoopGates/ButtonPad.cs
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Collider2D))]
@@ -18,18 +18,23 @@ public sealed class ButtonPad : MonoBehaviour
     [Tooltip("Скорость сглаживания движения.")]
     public float pressLerpSpeed = 12f;
 
+    [Header("FMOD")]
+    [SerializeField] private EventReference pressSfx;
+    [SerializeField] private EventReference releaseSfx;
+
     public event Action<ButtonPad, bool> OnPressChanged;
     public bool Pressed { get; private set; }
 
     private readonly HashSet<GameObject> _pressingPlayers = new();
-    private Transform _top;           // что двигаем
+
+    private Transform _top;
     private Vector3 _topStartLocalPos;
     private Collider2D _col;
 
     void Awake()
     {
         _col = GetComponent<Collider2D>();
-        _col.isTrigger = true; // why: игрок встаёт на триггер-плиту
+        _col.isTrigger = true;
 
         _top = topVisual != null ? topVisual : transform;
         _topStartLocalPos = _top.localPosition;
@@ -44,23 +49,32 @@ public sealed class ButtonPad : MonoBehaviour
     void Update()
     {
         if (_top == null) return;
-        var target = _topStartLocalPos + Vector3.up * (Pressed ? pressedOffsetY : 0f);
-        _top.localPosition = Vector3.Lerp(_top.localPosition, target, Time.deltaTime * pressLerpSpeed);
+
+        Vector3 target = _topStartLocalPos +
+                         Vector3.up * (Pressed ? pressedOffsetY : 0f);
+
+        _top.localPosition = Vector3.Lerp(
+            _top.localPosition,
+            target,
+            Time.deltaTime * pressLerpSpeed
+        );
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        var root = GetValidPlayerRoot(other);
-        if (root == null) return;
-        if (_pressingPlayers.Add(root))
+        var playerRoot = GetValidPlayerRoot(other);
+        if (playerRoot == null) return;
+
+        if (_pressingPlayers.Add(playerRoot))
             SetPressed(_pressingPlayers.Count > 0);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        var root = GetValidPlayerRoot(other);
-        if (root == null) return;
-        if (_pressingPlayers.Remove(root))
+        var playerRoot = GetValidPlayerRoot(other);
+        if (playerRoot == null) return;
+
+        if (_pressingPlayers.Remove(playerRoot))
             SetPressed(_pressingPlayers.Count > 0);
     }
 
@@ -74,7 +88,18 @@ public sealed class ButtonPad : MonoBehaviour
     private void SetPressed(bool value)
     {
         if (Pressed == value) return;
+
+        bool wasPressed = Pressed;
         Pressed = value;
+
+        // переход false -> true: нажатие
+        if (!wasPressed && Pressed && !pressSfx.IsNull)
+            RuntimeManager.PlayOneShot(pressSfx, transform.position);
+
+        // переход true -> false: отпускание
+        if (wasPressed && !Pressed && !releaseSfx.IsNull)
+            RuntimeManager.PlayOneShot(releaseSfx, transform.position);
+
         OnPressChanged?.Invoke(this, Pressed);
     }
 }
