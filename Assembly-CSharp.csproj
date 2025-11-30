@@ -118,6 +118,7 @@
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{89e398cf-d0da-4fc6-8c73-29bd3a111068}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\fmod\tethered\Metadata\Event\{b52f4f1e-cd65-4b90-9125-6160c30166ae}.xml" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{2c9191bd-edfe-4a91-b18e-3ff99c0dc727}.xml" />
     <None Include="Assets\Photon\PhotonChat\Demos\Demo Chat\Resources\OpenSans\Apache License.txt" />
     <None Include="Assets\fmod\tethered\Metadata\Event\{38830f80-14f5-4c59-b886-c2942c0d4817}.xml" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
@@ -133,16 +134,23 @@
     <None Include="Assets\fmod\tethered\Metadata\EncodingSetting\{30af4fc5-75c3-4385-b26f-4124a8506f76}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{932d7f5b-f2c9-472b-bfe6-141bac204a74}.xml" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{16cdf7a4-bf12-4805-bd4c-8a726c230a56}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{7572f6ee-bc1d-4623-83d5-cad2da2dd080}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{d5203bb8-489b-4abe-9f81-01d06e7e7c7e}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Platform\{71dea11e-8a27-4bb9-bc44-aa72483c45a7}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{a2e5d581-222d-4ee8-aed0-dd94c65362c9}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{b6609646-62a2-4ed2-bb84-ba5880758d84}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{cf0ea404-2fb8-4a78-bd8a-d1a9e61d446e}.xml" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{7c97bd2c-9cc6-4dd2-8413-7798ec3b9251}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{1d4d9709-7bda-4f93-9072-cf63feea47dd}.xml" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{d71e63a3-80e1-4993-998e-7d62cbf9fb0e}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{96d81704-859b-43d1-9877-c93c9c83ed21}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\EffectPresetFolder\{fb37e592-375b-49b0-93d5-b1581ff5eb51}.xml" />
+    <None Include="Assets\fmod\tethered\Metadata\Event\{4e960482-a246-4e86-b4c8-31af03f04ce4}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Master.xml" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{3211e79f-ba3f-454a-909e-b859b4112090}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{47b6ce93-5e0e-4ee7-be01-333c36086485}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{36f3dc99-7331-4633-a102-726cd8fb60b7}.xml" />
@@ -153,6 +161,8 @@
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{2c7342a0-3587-4a0b-bd6a-78b066800c65}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{a64ae86c-c50d-4211-83fb-f1145ad24564}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\Return\{50817c84-7d81-4a95-87a5-5e126c18b7ac}.xml" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{9350d39b-4eaf-448c-ada3-431d8224ae25}.xml" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{d44d11ac-090d-4f32-9cd1-c0375df4e3fe}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{53220c34-16f0-472a-a53c-236b7b44d96d}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{f4752af7-8f66-4cd9-9660-39562ab1d742}.xml" />
@@ -160,6 +170,7 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\fmod\tethered\Metadata\Event\{0b208a37-1638-4680-9b3a-e195f0a967a5}.xml" />
     <None Include="Assets\fmod\tethered\Metadata\SandboxFolder\{c7cb4543-8c00-4d34-9613-f376213fa6f5}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\Photon\PhotonLibs\changes-library.txt" />
@@ -200,6 +211,7 @@
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\fmod\tethered\Metadata\AudioFile\{59654c40-5146-4b05-8315-1900b6c230b6}.xml" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne.json" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\fmod\tethered\Metadata\AudioFile\{2186b927-e2d8-4283-88b4-1183697dc58c}.xml" />
