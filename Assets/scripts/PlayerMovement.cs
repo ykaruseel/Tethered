@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Photon")]
     public PhotonView view;
+    
+    [Header("Animation")]
+    public Animator anim;
 
     [Header("Движение")]
     [Min(0f)] public float moveSpeed = 5f;
@@ -37,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         view = GetComponent<PhotonView>();
+        anim = GetComponent<Animator>();
         stepTimer = StepInterval;
     }
 
@@ -45,7 +49,11 @@ public class PlayerMovement : MonoBehaviour
         // управляем только своим игроком
         if (view != null && !view.IsMine)
             return;
-
+        
+        if (anim != null)
+        {
+            anim.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
+        }
         // --- движение по X ---
         float moveInput = 0f;
 
