@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/fmod/tethered/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639001321316064486
+  lastModified: 639002963680179481
   FileSizes:
   - Name: Desktop
     Value: 1254880
@@ -116,7 +116,7 @@ MonoBehaviour:
   Path: Assets/fmod/tethered/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639001321316106521
+  lastModified: 639002963680204970
   FileSizes:
   - Name: Desktop
     Value: 1028
@@ -203,7 +203,7 @@ MonoBehaviour:
   - {fileID: -8843970133624061885}
   StringsBanks:
   - {fileID: -5230255876404980581}
-  cacheTime: 639001321316106521
+  cacheTime: 639002963680204970
   cacheVersion: 131634
 --- !u!114 &1633295980909422239
 MonoBehaviour:
