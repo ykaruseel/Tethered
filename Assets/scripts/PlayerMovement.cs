@@ -48,12 +48,15 @@ public class PlayerMovement : MonoBehaviour
     {
         // управляем только своим игроком
         if (view != null && !view.IsMine)
-            return;
+            return; // 👈 ЕСЛИ НЕ МОЙ ИГРОК, ТО ВЫХОД
+
+        // Этот код выполняется ТОЛЬКО на клиенте, который владеет этим персонажем
         
         if (anim != null)
         {
             anim.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
         }
+
         // --- движение по X ---
         float moveInput = 0f;
 
@@ -67,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 vel = rb.linearVelocity;
         vel.x = moveInput * moveSpeed;
-        rb.linearVelocity = vel;
+        rb.linearVelocity = vel; // 👈 Эта команда будет работать, так как мы владеем объектом
 
         // --- прыжок с клавы ---
         if (Input.GetKeyDown(KeyCode.W))

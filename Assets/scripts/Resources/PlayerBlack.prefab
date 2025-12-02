@@ -151,7 +151,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -213,7 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5c2a472446dae419ebf3d829cbe2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  view: {fileID: 9157845212831883536}
+  anim: {fileID: 1271496954642510913}
+  moveSpeed: 10
   jumpForce: 10
   groundCheckPoint: {fileID: 1100455849753559104}
   groundCheckRadius: 0.2
@@ -265,7 +267,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 7704674373323952554}
