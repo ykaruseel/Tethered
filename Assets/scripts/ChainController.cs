@@ -6,7 +6,10 @@ public class ChainController : MonoBehaviour, IPunObservable // 👈 Добав�
     [Header("Настройки")]
     public float maxChainLength = 5f;
     public string targetTag = "Player2"; 
-
+    
+    [Header("Визуализация")]
+    public Material chainMaterial;
+    
     private DistanceJoint2D joint;
     private LineRenderer lineRenderer;
     private GameObject targetObject;
@@ -19,12 +22,22 @@ public class ChainController : MonoBehaviour, IPunObservable // 👈 Добав�
 
     void Start()
     {
-        // Настраиваем линию
+        // Создаем сустав (Joint) - ЛОГИКА ОСТАЕТСЯ
+        // ... (Ваш код создания Joint) ...
+
+        // 🛑 УБРАНА СТАРАЯ ЛОГИКА СОЗДАНИЯ МАТЕРИАЛА 🛑
+
+        // Визуализация (Создаем LineRenderer)
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
-        // ...
+        
+        // ПРИСВАИВАЕМ МАТЕРИАЛ ИЗ ИНСПЕКТОРА
+        if (chainMaterial != null)
+            lineRenderer.material = chainMaterial;
+        else
+            Debug.LogWarning("ChainController: Material не назначен!");
     }
 
     void Update()

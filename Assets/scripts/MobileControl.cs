@@ -1,13 +1,14 @@
 using UnityEngine;
-using Photon.Pun; // Нужно для поиска "своего" игрока
+using Photon.Pun;
 
 public class MobileControl : MonoBehaviour
 {
     // Эта функция ищет ТВОЕГО персонажа среди всех на сцене
-    private PlayerMovement GetMyPlayer()
+    private PlayerMovement2 GetMyPlayer() 
     {
-        // Находим всех игроков с компонентом PlayerMovement
-        var players = FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None);
+        // 🛑 ИСПРАВЛЕНО: Используем самый простой способ поиска. 
+        // Это убирает ошибку "красного" FindObjectsSortMode.
+        var players = FindObjectsOfType<PlayerMovement2>(); 
         
         foreach (var p in players)
         {
@@ -17,14 +18,13 @@ public class MobileControl : MonoBehaviour
                 return p; // Возвращаем его!
             }
         }
-        return null; // Если не нашли (например, еще не загрузился)
+        return null; // Если не нашли 
     }
 
     // --- ЭТИ ФУНКЦИИ ВЕШАЕМ НА КНОПКИ ---
 
     public void LeftDown() 
     {
-        // Находим игрока -> Если он есть -> Нажимаем кнопку
         GetMyPlayer()?.OnLeftDown(); 
     }
 
