@@ -17,26 +17,26 @@ public class Launcher : MonoBehaviourPunCallbacks
         playButton.interactable = false;
         
         // Добавил проверку (!= null), чтобы не было ошибок, если забудешь привязать
-        if(statusText != null) statusText.text = "Подключение к серверу...";
+        if(statusText != null) statusText.text = "Connection to the cave...";
 
         PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
     {
-        if(statusText != null) statusText.text = "Готово! Жми играть.";
+        if(statusText != null) statusText.text = "Done! Tap something on the screen!.";
         playButton.interactable = true; 
     }
 
     public void ConnectToRoom()
     {
-        if(statusText != null) statusText.text = "Входим в комнату...";
+        if(statusText != null) statusText.text = "Entering a friend's consciousness...";
         PhotonNetwork.JoinOrCreateRoom("Room1", new RoomOptions { MaxPlayers = 2 }, TypedLobby.Default);
     }
 
     public override void OnJoinedRoom()
     {
-        if(statusText != null) statusText.text = "Ура! Загружаем игру...";
+        if(statusText != null) statusText.text = "Hooray! We're downloading something there...";
         PhotonNetwork.LoadLevel("SampleScene"); 
     }
 }
