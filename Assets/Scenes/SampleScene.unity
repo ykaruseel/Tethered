@@ -615,8 +615,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -692.79, y: -320}
-  m_SizeDelta: {x: 190.1135, y: 76.539}
+  m_AnchoredPosition: {x: -857, y: -231}
+  m_SizeDelta: {x: 197.1838, y: 97.7494}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &108409018
 MonoBehaviour:
@@ -3261,8 +3261,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11762,8 +11762,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 681, y: -436}
-  m_SizeDelta: {x: 314.42, y: 84.966}
+  m_AnchoredPosition: {x: 785, y: -436}
+  m_SizeDelta: {x: 370.1342, y: 164.2179}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1113735388
 MonoBehaviour:
@@ -13549,7 +13549,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.040519714, y: -0.013508558}
   m_SpriteTilingProperty:
     border: {x: 1.6899999, y: 0, z: 1.6899999, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -13559,7 +13559,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7834625, y: 7.618979}
   m_EdgeRadius: 0
 --- !u!212 &1263460363
 SpriteRenderer:
@@ -15576,8 +15576,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -692.79, y: -436}
-  m_SizeDelta: {x: 314.4131, y: 84.97}
+  m_AnchoredPosition: {x: -825, y: -427.3323}
+  m_SizeDelta: {x: 370.1342, y: 164.2179}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1484519428
 MonoBehaviour:
@@ -20133,8 +20133,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20963,8 +20963,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
