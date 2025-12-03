@@ -218,7 +218,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxChainLength: 5
   targetTag: Player2
-  chainMaterial: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  chainMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.08
+  lineColor: {r: 1, g: 1, b: 1, a: 1}
+  sortingLayerName: Player
+  sortingOrder: 5
 --- !u!114 &6592939351636892573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +255,6 @@ MonoBehaviour:
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 1492527079375279358}
   - {fileID: 3952034341357390142}
   - {fileID: 6274644993239527733}
   - {fileID: 3988669103677793556}
@@ -360,8 +363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 8687732378615945170}
-  moveSpeed: 10
-  jumpForce: 15
+  moveSpeed: 8
+  jumpForce: 13
   groundCheckPoint: {fileID: 7935314487003974655}
   groundCheckRadius: 0.2
   groundLayer:

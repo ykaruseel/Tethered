@@ -17969,7 +17969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closedY: -1.46
-  openY: 8
+  openY: 5
   moveSpeed: 3
 --- !u!1 &1665952927
 GameObject:

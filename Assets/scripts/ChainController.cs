@@ -1,95 +1,111 @@
+// Assets/Scripts/ChainController.cs
 using UnityEngine;
 using Photon.Pun;
 
-public class ChainController : MonoBehaviour, IPunObservable // 👈 Добавлено для синхронизации
+[DisallowMultipleComponent]
+[RequireComponent(typeof(PhotonView))]
+public class ChainController : MonoBehaviour
 {
-    [Header("Настройки")]
-    public float maxChainLength = 5f;
-    public string targetTag = "Player2"; 
-    
+    [Header("Настройки цепи")]
+    [Min(0.1f)] public float maxChainLength = 5f;
+    [Tooltip("Tag второго игрока, к которому цепляемся.")]
+    public string targetTag = "Player2";
+
     [Header("Визуализация")]
-    public Material chainMaterial;
-    
+    public Material chainMaterial;                  // можно назначить в инспекторе
+    [Min(0.001f)] public float lineWidth = 0.08f;
+    public Color lineColor = Color.white;
+    [Tooltip("Сортинг-слой линии (часто тот же, что и у игроков).")]
+    public string sortingLayerName = "Default";
+    public int sortingOrder = 5;
+
     private DistanceJoint2D joint;
     private LineRenderer lineRenderer;
     private GameObject targetObject;
-    private PhotonView view; // Ссылка на PhotonView
+    private PhotonView view;
 
-    void Awake()
+    private void Awake()
     {
         view = GetComponent<PhotonView>();
     }
 
-    void Start()
+    private void Start()
     {
-        // Создаем сустав (Joint) - ЛОГИКА ОСТАЕТСЯ
-        // ... (Ваш код создания Joint) ...
-
-        // 🛑 УБРАНА СТАРАЯ ЛОГИКА СОЗДАНИЯ МАТЕРИАЛА 🛑
-
-        // Визуализация (Создаем LineRenderer)
+        // --- LineRenderer ---
         lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer.useWorldSpace = true;
         lineRenderer.positionCount = 2;
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
-        
-        // ПРИСВАИВАЕМ МАТЕРИАЛ ИЗ ИНСПЕКТОРА
+
+        lineRenderer.startWidth = lineWidth;
+        lineRenderer.endWidth = lineWidth;
+
+        lineRenderer.startColor = lineColor;
+        lineRenderer.endColor = lineColor;
+
+        // Материал
         if (chainMaterial != null)
+        {
             lineRenderer.material = chainMaterial;
+        }
         else
-            Debug.LogWarning("ChainController: Material не назначен!");
+        {
+            // создаём безопасный материал на известном шейдере
+            var shader = Shader.Find("Sprites/Default");
+            if (shader == null)
+            {
+                Debug.LogWarning("ChainController: Shader 'Sprites/Default' не найден, линия может быть невидима.");
+                lineRenderer.material = new Material(Shader.Find("Unlit/Color"));
+            }
+            else
+            {
+                lineRenderer.material = new Material(shader);
+            }
+
+            lineRenderer.material.color = lineColor;
+        }
+
+        // Сортинг — чтобы линия не пряталась за фоном
+        lineRenderer.sortingLayerName = sortingLayerName;
+        lineRenderer.sortingOrder = sortingOrder;
     }
 
-    void Update()
+    private void Update()
     {
-        // 1. ПОИСК ПАРТНЕРА
+        // 1. Ищем партнёра, если ещё не нашли
         if (targetObject == null)
         {
             GameObject found = GameObject.FindGameObjectWithTag(targetTag);
             if (found != null)
             {
                 targetObject = found;
-                ConnectTo(targetObject); // Нашли! Соединяем.
+                ConnectTo(targetObject);
             }
+            // Пока не нашли — ничего не рисуем
+            lineRenderer.enabled = false;
             return;
         }
-        
-        // 2. ОТРИСОВКА ЦЕПИ (У этого игрока всегда должна работать отрисовка)
-        if (lineRenderer != null)
+
+        // 2. Рисуем линию между игроками
+        if (lineRenderer != null && targetObject != null)
         {
-             lineRenderer.SetPosition(0, transform.position);
-             lineRenderer.SetPosition(1, targetObject.transform.position);
+            lineRenderer.enabled = true;
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, targetObject.transform.position);
         }
     }
 
-    void ConnectTo(GameObject otherPlayer)
+    private void ConnectTo(GameObject otherPlayer)
     {
-        // Физическое соединение Joint: создается ТОЛЬКО на Хосте (владельце)
-        // Joint создается один раз и влияет на физику обоих.
-        if (view.IsMine)
-        {
+        // Сустав создаём только у владельца этого объекта
+        if (!view.IsMine) return;
+
+        if (joint == null)
             joint = gameObject.AddComponent<DistanceJoint2D>();
-            joint.connectedBody = otherPlayer.GetComponent<Rigidbody2D>();
-            joint.autoConfigureDistance = false;
-            joint.distance = maxChainLength;
-            joint.maxDistanceOnly = true;
-            joint.enableCollision = false; 
-            
-            // 👈 ВАЖНОЕ ИЗМЕНЕНИЕ: Синхронизируем Joint
-            // Это может быть не нужно, если PhotonRigidbody2DView уже есть,
-            // но мы гарантируем, что Joint создался.
-        }
-    }
 
-    // 👈 МЕТОД IPunObservable (Для синхронизации визуальной линии)
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        // Мы используем Photon Transform View и Rigidbody View для позиций.
-        // LineRenderer синхронизируется через Transform View, так как он на том же объекте.
-        // Если цепь не видна, это часто ошибка отрисовки.
-        // Мы можем добавить прямую синхронизацию позиций, но это сложнее.
-        
-        // Для начала попробуй просто удалить этот пустой метод, чтобы не было конфликтов, 
-        // если ты его не используешь.
+        joint.connectedBody = otherPlayer.GetComponent<Rigidbody2D>();
+        joint.autoConfigureDistance = false;
+        joint.distance = maxChainLength;
+        joint.maxDistanceOnly = true;
+        joint.enableCollision = false;
     }
 }
